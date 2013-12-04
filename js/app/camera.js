@@ -1,4 +1,4 @@
-define( ["three", "container"], function( THREE, container ) {
+define( ["three", "threejs-container"], function( THREE, container ) {
   camera = new THREE.PerspectiveCamera( 70, 1, 1, 1000 );
   camera.position.z = 400;
 
