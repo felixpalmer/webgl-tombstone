@@ -1,5 +1,8 @@
 define( ["drawing-container"], function( container ) {
   var scribbler = {
+    drawing: false,
+    updated: false,
+
     init: function() {
       container.innerHTML = "";
       scribbler.canvas = document.createElement( 'canvas' );
@@ -20,7 +23,6 @@ define( ["drawing-container"], function( container ) {
     clear: function() {
       scribbler.ctx.clearRect(0, 0, scribbler.canvas.width, scribbler.canvas.height);
     },
-    drawing: false,
     onMouseDown: function( e ) {
       scribbler.drawing = true;
       scribbler.paint( e.offsetX, e.offsetY );
@@ -36,9 +38,10 @@ define( ["drawing-container"], function( container ) {
     paint: function( x, y ) {
       scribbler.ctx.beginPath();
       scribbler.ctx.arc( x, y, 10, 0, 2 * Math.PI, false );
-      scribbler.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      scribbler.ctx.fillStyle = "rgba(1, 255, 0, 0.2)";
       scribbler.ctx.fill();
       scribbler.ctx.closePath();
+      scribbler.updated = true;
     },
     updateSize: function() {
       scribbler.canvas.width = container.offsetWidth;

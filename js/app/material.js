@@ -5,5 +5,9 @@ define( ["three", "texture"], function( THREE, texture ) {
       shading: THREE.FlatShading 
     }),
     stone1: new THREE.MeshBasicMaterial( { map: texture.stone1 } ),
+    scribbler: new THREE.MeshBasicMaterial( {
+      map: texture.stone1,
+      transparent: true
+    } ),
   };
 } );

@@ -1,16 +1,31 @@
 define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene", "scribbler", "texture" ], 
 function( three, camera, controls, geometry, light, material, renderer, scene, scribbler, texture ) {
   var app = {
-    mesh: new THREE.Mesh( geometry["block"], material["stone1"] ),
+    baseMesh: new THREE.Mesh( geometry["block"], material["stone1"] ),
+    drawMesh: new THREE.Mesh( geometry["block"], material["scribbler"] ),
     init: function() {
-      scene.add( app.mesh );
-      app.mesh.rotation.x = Math.PI / 8;
+      scene.add( app.baseMesh );
+      scene.add( app.drawMesh );
+      app.baseMesh.rotation.x = Math.PI / 8;
+      app.drawMesh.rotation.x = Math.PI / 8;
+      app.drawMesh.scale = new THREE.Vector3( 1.01, 1.01, 1.01 );
       light.target = app.mesh;
     },
     animate: function() {
       requestAnimationFrame( app.animate );
       controls.update()
-      app.mesh.rotation.y += 0.006;
+      app.baseMesh.rotation.y += 0.006;
+      app.drawMesh.rotation.y += 0.006;
+
+      // Update texture based on what is on drawing canvas
+      if ( scribbler.updated ) {
+        var t = new THREE.Texture( scribbler.canvas );
+        t.needsUpdate = true;
+        t.premultiplyAlpha = true;
+        app.drawMesh.material.map = t;
+        scribbler.updated = false;
+      }
+
       renderer.render( scene, camera );
     }
   }
