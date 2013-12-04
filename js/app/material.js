@@ -6,7 +6,7 @@ define( ["three", "texture"], function( THREE, texture ) {
     }),
     stone1: new THREE.MeshBasicMaterial( { map: texture.stone1 } ),
     scribbler: new THREE.MeshBasicMaterial( {
-      map: texture.stone1,
+      map: texture.scribbler,
       transparent: true
     } ),
   };
