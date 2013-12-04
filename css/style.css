@@ -28,9 +28,9 @@ p {
 }
 
 #container {
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 200px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 400px;
 }
 
 /* threejs container styles */
@@ -47,7 +47,7 @@ p {
   background:#000;
   color: #666;
   text-align: center;
-  padding: 70% 0 0 0;
+  padding: 50% 0 0 0;
   height: 0;
   width: 50%;
 }
