@@ -18,8 +18,7 @@ define( ["drawing-container"], function( container ) {
       scribbler.clear();
     },    
     clear: function() {
-      scribbler.ctx.fillStyle = "white";
-      scribbler.ctx.fillRect( 0, 0, scribbler.canvas.width, scribbler.canvas.height );
+      scribbler.ctx.clearRect(0, 0, scribbler.canvas.width, scribbler.canvas.height);
     },
     drawing: false,
     onMouseDown: function( e ) {
@@ -37,7 +36,7 @@ define( ["drawing-container"], function( container ) {
     paint: function( x, y ) {
       scribbler.ctx.beginPath();
       scribbler.ctx.arc( x, y, 10, 0, 2 * Math.PI, false );
-      scribbler.ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      scribbler.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       scribbler.ctx.fill();
       scribbler.ctx.closePath();
     },
