@@ -1,7 +1,9 @@
-WebGL Carver
+WebGL Tombstone
 ============
 
-[Live demo](http://felixpalmer.github.io/webgl-carver/) of this project can be found at http://felixpalmer.github.io/webgl-carver/
+[Live demo](http://felixpalmer.github.io/webgl-tombstone/) of this project can be found at http://felixpalmer.github.io/webgl-tombstone/
+
+The WebGL Tombstone is simple demo app showing how to combine a 2D Canvas, with a WebGL Canvas. Specifcally you can draw on the 2D Canvas and have the 3D tombstone update in realtime.
 
 Running
 =======
