@@ -25,11 +25,11 @@ define( ["drawing-container"], function( container ) {
     },
     onMouseDown: function( e ) {
       scribbler.drawing = true;
-      scribbler.paint( e.offsetX, e.offsetY );
+      scribbler.paint( e.offsetX || e.layerX, e.offsetY || e.layerY );
     },
     onMouseMove: function( e ) {
       if ( scribbler.drawing ) {
-        scribbler.paint( e.offsetX, e.offsetY );
+        scribbler.paint( e.offsetX || e.layerX, e.offsetY || e.layerY );
       }
     },
     onMouseUp: function( e ) {
