@@ -4,6 +4,10 @@ define( ["three", "texture"], function( THREE, texture ) {
       color: 0x00dcdc, 
       shading: THREE.FlatShading 
     }),
-    grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
+    stone1: new THREE.MeshBasicMaterial( { map: texture.stone1 } ),
+    scribbler: new THREE.MeshBasicMaterial( {
+      map: texture.scribbler,
+      transparent: true
+    } ),
   };
 } );

@@ -1,5 +1,5 @@
 define( ["three"], function( THREE ) { 
   return {
-    cube: new THREE.CubeGeometry( 200, 200, 200 ),
+    block: new THREE.CubeGeometry( 200, 200, 20, 10, 10, 1 ),
   };
 } );

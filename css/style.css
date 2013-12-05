@@ -7,14 +7,10 @@
 /* base styles */
 
 html {
-  font-family: "Hamburger", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 24px;
-  line-height: 1.2;
   color: #fed;
-  text-shadow: black 5px 5px;
   text-align: center;
-  background: #113;
-  background: linear-gradient(45deg, #113, #101);
+  background: #222;
+  background: linear-gradient(180deg, #222, #000);
 }
 
 body {
@@ -22,6 +18,8 @@ body {
 }
 
 h1 {
+  font-family: "Hamburger", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: black 5px 5px;
   font-size: 70px;
 }
 
@@ -30,9 +28,9 @@ p {
 }
 
 #container {
-  padding-left: 300px;
-  padding-right: 300px;
-  padding-bottom: 200px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 400px;
 }
 
 /* threejs container styles */
@@ -43,19 +41,34 @@ p {
   min-height: 300px;
 }
 
-#threejs-container {
+#threejs-container,
+#drawing-container {
   position: relative;
   background:#000;
   color: #666;
   text-align: center;
   padding: 50% 0 0 0;
   height: 0;
+  width: 50%;
 }
 
-#threejs-container canvas {
+#threejs-container {
+  float: left;
+}
+
+#drawing-container {
+  float: right;
+}
+
+#threejs-container canvas,
+#drawing-container canvas {
   position: absolute;
   left: 0px;
   top: 0px;
   right: 0px;
   bottom: 0px;
+}
+
+#drawing-container canvas {
+  background: white;
 }
