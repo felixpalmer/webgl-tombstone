@@ -60,6 +60,16 @@ p {
   float: right;
 }
 
+#drawing-container-overlay {
+  color: #ccc;
+  position: absolute;
+  font-size: 50px;
+  text-shadow: #ccc 5px 5px 10px;
+  bottom: 50px;
+  width: 100%;
+  z-index: 100;
+}
+
 #threejs-container canvas,
 #drawing-container canvas {
   position: absolute;

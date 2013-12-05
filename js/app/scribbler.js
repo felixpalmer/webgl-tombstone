@@ -1,10 +1,10 @@
 define( ["drawing-container"], function( container ) {
   var scribbler = {
     drawing: false,
+    overlay: true,
     updated: false,
 
     init: function() {
-      container.innerHTML = "";
       scribbler.canvas = document.createElement( 'canvas' );
       scribbler.ctx = scribbler.canvas.getContext( '2d' );
       container.appendChild( scribbler.canvas );
@@ -19,11 +19,16 @@ define( ["drawing-container"], function( container ) {
       scribbler.canvas.addEventListener( 'mouseup', scribbler.onMouseUp, false );
 
       scribbler.clear();
-    },    
+    },
     clear: function() {
       scribbler.ctx.clearRect(0, 0, scribbler.canvas.width, scribbler.canvas.height);
     },
     onMouseDown: function( e ) {
+      if ( scribbler.overlay ) {
+          var overlay = document.getElementById( "drawing-container-overlay");
+          container.removeChild( overlay );
+          scribbler.overlay = false;
+      }
       scribbler.drawing = true;
       scribbler.paint( e.offsetX || e.layerX, e.offsetY || e.layerY );
     },
