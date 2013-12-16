@@ -1,7 +1,7 @@
-define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene", "scribbler", "texture" ], 
-function( three, camera, controls, geometry, light, material, renderer, scene, scribbler, texture ) {
+define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene", "scribbler", "texture" ],
+function( THREE, camera, controls, geometry, light, material, renderer, scene, scribbler, texture ) {
   var app = {
-    baseMesh: new THREE.Mesh( geometry.block, material.stone1 ),
+    baseMesh: new THREE.Mesh( geometry.block, material.tombstone ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
     init: function() {
       scene.add( app.baseMesh );
@@ -14,8 +14,8 @@ function( three, camera, controls, geometry, light, material, renderer, scene, s
       light.target = app.mesh;
     },
     animate: function() {
-      requestAnimationFrame( app.animate );
-      controls.update()
+      window.requestAnimationFrame( app.animate );
+      controls.update();
       app.baseMesh.rotation.y += 0.006;
       app.drawMesh.rotation.y += 0.006;
 
@@ -27,6 +27,6 @@ function( three, camera, controls, geometry, light, material, renderer, scene, s
 
       renderer.render( scene, camera );
     }
-  }
+  };
   return app;
 } );
