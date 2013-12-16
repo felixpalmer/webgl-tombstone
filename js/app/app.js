@@ -3,9 +3,10 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
   var app = {
     baseMesh: new THREE.Mesh( geometry.block, material.tombstone ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
+    spin: false,
     init: function() {
       scene.add( app.baseMesh );
-      scene.add( app.drawMesh );
+      //scene.add( app.drawMesh );
       app.baseMesh.rotation.x = Math.PI / 8;
       app.drawMesh.rotation.x = Math.PI / 8;
       app.drawMesh.visible = false;
@@ -17,8 +18,10 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
     animate: function() {
       window.requestAnimationFrame( app.animate );
       controls.update();
-      app.baseMesh.rotation.y += 0.006;
-      app.drawMesh.rotation.y += 0.006;
+      if ( app.spin ) {
+        app.baseMesh.rotation.y += 0.006;
+        app.drawMesh.rotation.y += 0.006;
+      }
 
       // Update texture based on what is on drawing canvas
       if ( scribbler.updated ) {

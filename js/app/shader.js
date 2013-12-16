@@ -9,14 +9,16 @@ define( [], function() {
       tombstone: [
         "uniform sampler2D uCarveTexture;",
 
+        "varying float vDepth;",
         "varying vec2 vUv;",
 
         "void main() {",
            // Get displacement for this vertext from carve texture
-        "  float d = texture2D(uCarveTexture, uv).g;",
-        "  vec3 displacedPosition = position - 10.0 * d * normal;",
+        "  float depth = texture2D(uCarveTexture, uv).a;",
+        "  vec3 displacedPosition = position - 10.0 * depth * normal;",
         "  gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);",
-           // Pass uv to fragment shader
+           // Pass depth and uv to fragment shader
+        "  vDepth = depth;",
         "  vUv = uv;",
         "}",
       ].join("\n"),
@@ -32,10 +34,13 @@ define( [], function() {
       tombstone: [
         "uniform sampler2D uTexture;",
 
+        "varying float vDepth;",
         "varying vec2 vUv;",
 
         "void main() {",
         "  vec4 color = texture2D(uTexture, vUv);",
+        "  vec4 dark = vec4(0, 0, 0, 1.0);",
+        "  color = mix(color, dark, 0.5 * vDepth);",
         "  gl_FragColor = vec4(color);",
         "}",
       ].join("\n"),
