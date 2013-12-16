@@ -1,5 +1,6 @@
-varying vec2 vUv;
 uniform sampler2D uTexture;
+
+varying vec2 vUv;
 
 void main() {
   vec4 color = texture2D(uTexture, vUv);

@@ -18,6 +18,7 @@ define( ["three", "shader", "texture"], function( THREE, shader, texture ) {
     }),
     tombstone: new THREE.ShaderMaterial( {
       uniforms: {
+        uCarveTexture: { type: "t", value: texture.scribbler },
         uTexture: { type: "t", value: texture.stone1 }
       },
       vertexShader: shader.vertex.tombstone,
