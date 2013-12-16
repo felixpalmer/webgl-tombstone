@@ -23,6 +23,14 @@ define( ["drawing-container"], function( container ) {
     clear: function() {
       scribbler.ctx.clearRect(0, 0, scribbler.canvas.width, scribbler.canvas.height);
     },
+    loadImage: function( url ) {
+      var img = new Image();
+      img.onload = function () {
+        scribbler.ctx.drawImage(img, 0, 0, scribbler.canvas.width, scribbler.canvas.height);
+        scribbler.updated = true;
+      };
+      img.src = url;
+    },
     onMouseDown: function( e ) {
       if ( scribbler.overlay ) {
           var overlay = document.getElementById( "drawing-container-overlay");
