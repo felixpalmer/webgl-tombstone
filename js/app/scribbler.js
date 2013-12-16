@@ -22,6 +22,7 @@ define( ["drawing-container"], function( container ) {
     },
     clear: function() {
       scribbler.ctx.clearRect(0, 0, scribbler.canvas.width, scribbler.canvas.height);
+      scribbler.updated = true;
     },
     loadImage: function( url ) {
       var img = new Image();

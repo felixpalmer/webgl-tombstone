@@ -14,9 +14,6 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
       // Draw mesh is slightly larger, so that it appears in front of base mesh
       app.drawMesh.scale = new THREE.Vector3( 1.01, 1.01, 1.01 );
       light.target = app.mesh;
-
-      // Load image onto scribbler
-      scribbler.loadImage( "/js/textures/depth.png" );
     },
     animate: function() {
       window.requestAnimationFrame( app.animate );
