@@ -10,7 +10,7 @@ define( ["app", "scribbler"], function( app, scribbler ) {
     },
     "Load depth image": function() {
       scribbler.clear();
-      scribbler.loadImage( "/js/textures/depth.png" );
+      scribbler.loadImage( "js/textures/depth.png" );
     },
     "Clear canvas": function() {
       scribbler.clear();
