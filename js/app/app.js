@@ -3,10 +3,11 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
   var app = {
     baseMesh: new THREE.Mesh( geometry.block, material.tombstone ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
+    carve: false,
     spin: false,
     init: function() {
       scene.add( app.baseMesh );
-      //scene.add( app.drawMesh );
+      scene.add( app.drawMesh );
       app.baseMesh.rotation.x = Math.PI / 8;
       app.drawMesh.rotation.x = Math.PI / 8;
       app.drawMesh.visible = false;
@@ -14,6 +15,15 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
       // Draw mesh is slightly larger, so that it appears in front of base mesh
       app.drawMesh.scale = new THREE.Vector3( 1.01, 1.01, 1.01 );
       light.target = app.mesh;
+    },
+    reset: function() {
+      if ( app.carve ) {
+        app.drawMesh.visible = false;
+        app.baseMesh.material = material.tombstone;
+      } else {
+        app.drawMesh.visible = true;
+        app.baseMesh.material = material.stone1;
+      }
     },
     animate: function() {
       window.requestAnimationFrame( app.animate );
