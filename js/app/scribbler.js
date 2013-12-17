@@ -22,6 +22,15 @@ define( ["drawing-container"], function( container ) {
     },
     clear: function() {
       scribbler.ctx.clearRect(0, 0, scribbler.canvas.width, scribbler.canvas.height);
+      scribbler.updated = true;
+    },
+    loadImage: function( url ) {
+      var img = new Image();
+      img.onload = function () {
+        scribbler.ctx.drawImage(img, 0, 0, scribbler.canvas.width, scribbler.canvas.height);
+        scribbler.updated = true;
+      };
+      img.src = url;
     },
     onMouseDown: function( e ) {
       if ( scribbler.overlay ) {
@@ -37,13 +46,13 @@ define( ["drawing-container"], function( container ) {
         scribbler.paint( e.offsetX || e.layerX, e.offsetY || e.layerY );
       }
     },
-    onMouseUp: function( e ) {
+    onMouseUp: function() {
       scribbler.drawing = false;
     },
     paint: function( x, y ) {
       scribbler.ctx.beginPath();
       scribbler.ctx.arc( x, y, 10, 0, 2 * Math.PI, false );
-      scribbler.ctx.fillStyle = "rgba(1, 255, 0, 0.2)";
+      scribbler.ctx.fillStyle = "rgba(1, 255, 0, 0.1)";
       scribbler.ctx.fill();
       scribbler.ctx.closePath();
       scribbler.updated = true;

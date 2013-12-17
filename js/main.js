@@ -8,8 +8,8 @@ require.config( {
     'TrackballControls': { deps: ['threeCore'], exports: 'THREE' },
     // --- end THREE sub-components
     'detector': { exports: 'Detector' },
-    'stats': { exports: 'Stats' },
-  }, 
+    'stats': { exports: 'Stats' }
+  },
   // Third party code lives in js/lib
   paths: {
     // --- start THREE sub-components
@@ -18,12 +18,12 @@ require.config( {
     TrackballControls: '../lib/controls/TrackballControls',
     // --- end THREE sub-components
     detector: '../lib/Detector',
-    stats: '../lib/stats.min',
-  },
+    stats: '../lib/stats.min'
+  }
 } );
 
 // Start the app
-require( ['detector', 'app', 'threejs-container'], function ( Detector, app, container ) {
+require( ['detector', 'app', 'threejs-container', 'buttons' ], function ( Detector, app, container ) {
   if ( ! Detector.webgl ) {
     Detector.addGetWebGLMessage();
     container.innerHTML = "";
