@@ -3,7 +3,7 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
   var app = {
     baseMesh: new THREE.Mesh( geometry.block, material.tombstone ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
-    carve: false,
+    carve: true,
     spin: false,
     init: function() {
       scene.add( app.baseMesh );
