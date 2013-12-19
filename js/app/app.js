@@ -1,7 +1,7 @@
 define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene", "scribbler", "texture" ],
 function( THREE, camera, controls, geometry, light, material, renderer, scene, scribbler, texture ) {
   var app = {
-    baseMesh: new THREE.Mesh( geometry.block, material.tombstone ),
+    baseMesh: new THREE.Mesh( geometry.block, material.tombstoneLight ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
     carve: true,
     spin: false,
