@@ -1,6 +1,7 @@
 define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene", "scribbler", "texture" ],
 function( THREE, camera, controls, geometry, light, material, renderer, scene, scribbler, texture ) {
   var app = {
+    clock: new THREE.Clock( true ),
     baseMesh: new THREE.Mesh( geometry.block, material.tombstoneLight ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
     carve: true,
@@ -39,6 +40,10 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
         scribbler.updated = false;
       }
 
+      // Rotate light around object
+      light.position.x = 100 * Math.sin( app.clock.getElapsedTime() );
+      light.position.z = 100 * Math.cos( app.clock.getElapsedTime() );
+      material.tombstoneLight.uniforms.uLight.value = light.position;
       renderer.render( scene, camera );
     }
   };

@@ -18,6 +18,7 @@ void main() {
   vec4 color = texture2D(uTexture, vUv);
   vec4 dark = vec4(0, 0, 0, 1.0);
   float incidence = dot(normalize(uLight - vPosition), getNormal());
-  color = mix(dark, color, 0.5 + 0.5 * incidence);
+  incidence = max(0.0, incidence);
+  color = mix(dark, color, 0.1 + 0.9 * incidence);
   gl_FragColor = vec4(color);
 }
