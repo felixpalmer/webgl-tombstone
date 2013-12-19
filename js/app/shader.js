@@ -33,7 +33,7 @@ define( [], function() {
         "  float depth = texture2D(uCarveTexture, uv).a;",
         "  vec3 displacedPosition = position - 10.0 * depth * normal;",
         "  gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);",
-           // Pass depth and uv to fragment shader
+           // Pass position, camera and uv to fragment shader
         "  vPosition = displacedPosition;",
         "  vUv = uv;",
         "}",
@@ -80,9 +80,21 @@ define( [], function() {
         "void main() {",
         "  vec4 color = texture2D(uTexture, vUv);",
         "  vec4 dark = vec4(0, 0, 0, 1.0);",
-        "  float incidence = dot(normalize(uLight - vPosition), getNormal());",
-        "  incidence = max(0.0, incidence);",
-        "  color = mix(dark, color, 0.1 + 0.9 * incidence);",
+        "  vec4 light = vec4(1.0, 1.0, 1.0, 1.0);",
+        "  vec3 normal = getNormal();",
+
+           // Mix in diffuse light
+        "  float diffuse = dot(normalize(uLight - vPosition), normal);",
+        "  diffuse = max(0.0, diffuse);",
+        "  color = mix(dark, color, 0.1 + 0.9 * diffuse);",
+
+           // Mix in specular light
+        "  vec3 halfVector = normalize(normalize(cameraPosition - vPosition) + normalize(uLight - vPosition));",
+        "  float specular = dot(normal, halfVector);",
+        "  specular = max(0.0, specular);",
+        "  specular = pow(specular, 50.0);",
+        "  color = mix(color, light, 0.5 * specular);",
+
         "  gl_FragColor = vec4(color);",
         "}",
       ].join("\n"),

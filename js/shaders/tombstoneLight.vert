@@ -8,7 +8,7 @@ void main() {
   float depth = texture2D(uCarveTexture, uv).a;
   vec3 displacedPosition = position - 10.0 * depth * normal;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
-  // Pass depth and uv to fragment shader
+  // Pass position, camera and uv to fragment shader
   vPosition = displacedPosition;
   vUv = uv;
 }

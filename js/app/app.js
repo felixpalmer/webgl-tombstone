@@ -41,8 +41,7 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
       }
 
       // Rotate light around object
-      light.position.x = 100 * Math.sin( app.clock.getElapsedTime() );
-      light.position.z = 100 * Math.cos( app.clock.getElapsedTime() );
+      light.position.x = 200 * Math.sin( app.clock.getElapsedTime() );
       material.tombstoneLight.uniforms.uLight.value = light.position;
       renderer.render( scene, camera );
     }
