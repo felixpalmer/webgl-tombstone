@@ -8,6 +8,10 @@ define( ["app", "scribbler"], function( app, scribbler ) {
       app.carve = !app.carve;
       app.reset();
     },
+    "Toggle light": function() {
+      app.light = !app.light;
+      app.reset();
+    },
     "Load depth image": function() {
       scribbler.clear();
       scribbler.loadImage( "js/textures/depth.png" );

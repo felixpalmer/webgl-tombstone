@@ -1,9 +1,11 @@
 define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene", "scribbler", "texture" ],
 function( THREE, camera, controls, geometry, light, material, renderer, scene, scribbler, texture ) {
   var app = {
-    baseMesh: new THREE.Mesh( geometry.block, material.tombstone ),
+    clock: new THREE.Clock( true ),
+    baseMesh: new THREE.Mesh( geometry.block, material.tombstoneLight ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
     carve: true,
+    light: true,
     spin: false,
     init: function() {
       scene.add( app.baseMesh );
@@ -14,12 +16,17 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
 
       // Draw mesh is slightly larger, so that it appears in front of base mesh
       app.drawMesh.scale = new THREE.Vector3( 1.01, 1.01, 1.01 );
-      light.target = app.mesh;
+
+      app.reset();
     },
     reset: function() {
       if ( app.carve ) {
         app.drawMesh.visible = false;
-        app.baseMesh.material = material.tombstone;
+        if ( app.light ) {
+          app.baseMesh.material = material.tombstoneLight;
+        } else {
+          app.baseMesh.material = material.tombstone;
+        }
       } else {
         app.drawMesh.visible = true;
         app.baseMesh.material = material.stone1;
@@ -39,6 +46,9 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
         scribbler.updated = false;
       }
 
+      // Rotate light around object
+      light.position.x = 200 * Math.sin( app.clock.getElapsedTime() );
+      material.tombstoneLight.uniforms.uLight.value = light.position;
       renderer.render( scene, camera );
     }
   };
