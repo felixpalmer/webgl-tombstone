@@ -83,9 +83,18 @@ define( ["drawing-container"], function( container ) {
       for ( var x = 0; x <= dirtyRect.width; x++ ) {
         for ( var y = 0; y <= dirtyRect.height; y++ ) {
           var i = 4 * ( x + y * dirtyRect.width );
-          // Copy the alpha channel into the R channel
-          outputPixels[i] = inputPixels[i+3];
-          outputPixels[i+3] = 255;
+          // Get the current pixel, the next pixel to the right, and the pixel below
+          // Read from the A channel (hence the +3)
+          var p1 = inputPixels[i + 3];
+          var p2 = x === dirtyRect.width ? p1 : inputPixels[i + 7];
+          var p3 = y === dirtyRect.height ? p1 : inputPixels[i + 4 * dirtyRect.width + 3];
+          // Calculate difference between pixels to get gradient, normalizing in range 0-255
+          var dX = ( p2 - p1 ) / 2 + 128;
+          var dY = ( p3 - p1 ) / 2 + 128;
+          // Write gradient into R and G channels, depth into alpha
+          outputPixels[i] = dX;
+          outputPixels[i + 1] = dY;
+          outputPixels[i + 3] = p1; // TODO write in depth
         }
       }
 
