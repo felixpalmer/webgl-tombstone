@@ -9,7 +9,7 @@ define( ["app", "scribbler"], function( app, scribbler ) {
       app.reset();
     },
     "Toggle light": function() {
-      app.light = !app.light;
+      app.light = ( app.light + 1 ) % 3;
       app.reset();
     },
     "Load depth image": function() {

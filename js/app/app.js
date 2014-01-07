@@ -5,7 +5,7 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
     baseMesh: new THREE.Mesh( geometry.block, material.tombstoneLight ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
     carve: true,
-    light: true,
+    light: 0,
     spin: false,
     init: function() {
       scene.add( app.baseMesh );
@@ -22,10 +22,12 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
     reset: function() {
       if ( app.carve ) {
         app.drawMesh.visible = false;
-        if ( app.light ) {
-          app.baseMesh.material = material.tombstoneLight;
-        } else {
+        if ( app.light === 0) {
           app.baseMesh.material = material.tombstone;
+        } else if ( app.light === 1) {
+          app.baseMesh.material = material.tombstoneLight;
+        } else if ( app.light === 2) {
+          app.baseMesh.material = material.tombstoneLight2;
         }
       } else {
         app.drawMesh.visible = true;
@@ -47,8 +49,14 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
       }
 
       // Rotate light around object
-      light.position.x = 200 * Math.sin( app.clock.getElapsedTime() );
-      material.tombstoneLight.uniforms.uLight.value = light.position;
+      if ( app.light === 1) {
+        light.position.x = 200 * Math.sin( app.clock.getElapsedTime() );
+        material.tombstoneLight.uniforms.uLight.value = light.position;
+      } else if ( app.light === 2) {
+        light.position.x = 50 * Math.sin( app.clock.getElapsedTime() );
+        light.position.y = 70 * Math.cos( app.clock.getElapsedTime() );
+        material.tombstoneLight2.uniforms.uLight.value = light.position;
+      }
       renderer.render( scene, camera );
     }
   };

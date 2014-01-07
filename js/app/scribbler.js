@@ -9,8 +9,8 @@ define( ["drawing-container"], function( container ) {
       scribbler.ctx = scribbler.canvas.getContext( '2d' );
       scribbler.gradientCanvas = document.createElement( 'canvas' );
       scribbler.gradientCtx = scribbler.gradientCanvas.getContext( '2d' );
-      //container.appendChild( scribbler.canvas );
-      container.appendChild( scribbler.gradientCanvas );
+      container.appendChild( scribbler.canvas );
+      //container.appendChild( scribbler.gradientCanvas );
 
       // Update the canvas size when the window is resized
       window.addEventListener( 'resize', scribbler.updateSize, false );
@@ -32,12 +32,6 @@ define( ["drawing-container"], function( container ) {
       var img = new Image();
       img.onload = function () {
         scribbler.ctx.drawImage( img, 0, 0, scribbler.canvas.width, scribbler.canvas.height );
-        scribbler.computeGradient( {
-          x: 0,
-          y: 0,
-          width: scribbler.canvas.width,
-          height: scribbler.canvas.height
-        } );
         scribbler.updated = true;
       };
       img.src = url;
@@ -62,7 +56,7 @@ define( ["drawing-container"], function( container ) {
     paint: function( x, y ) {
       scribbler.ctx.beginPath();
       scribbler.ctx.arc( x, y, 10, 0, 2 * Math.PI, false );
-      scribbler.ctx.fillStyle = "rgba(1, 255, 0, 0.1)";
+      scribbler.ctx.fillStyle = "rgba(1, 255, 0, 0.5)";
       scribbler.ctx.fill();
       scribbler.ctx.closePath();
       scribbler.updated = true;
@@ -74,6 +68,8 @@ define( ["drawing-container"], function( container ) {
       scribbler.gradientCanvas.height = container.offsetHeight;
       scribbler.clear();
     },
+    // Currently unused, leaving here for reference
+    // Function computes the gradient of the canvas, and saves it into gradientCanvas
     computeGradient: function( dirtyRect ) {
       var inputPixels = scribbler.ctx.getImageData( dirtyRect.x, dirtyRect.y,
                                                     dirtyRect.width, dirtyRect.height ).data;
@@ -94,7 +90,7 @@ define( ["drawing-container"], function( container ) {
           // Write gradient into R and G channels, depth into alpha
           outputPixels[i] = dX;
           outputPixels[i + 1] = dY;
-          outputPixels[i + 3] = p1; // TODO write in depth
+          outputPixels[i + 3] = p1;
         }
       }
 
