@@ -3,16 +3,19 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
   var app = {
     clock: new THREE.Clock( true ),
     baseMesh: new THREE.Mesh( geometry.block, material.tombstoneLight ),
+    baseMeshLowRes: new THREE.Mesh( geometry.blockLowRes, material.tombstoneLight ),
     drawMesh: new THREE.Mesh( geometry.block, material.scribbler ),
     carve: true,
-    light: 0,
+    light: 2,
     spin: false,
+    vertices: true,
     init: function() {
       scene.add( app.baseMesh );
+      scene.add( app.baseMeshLowRes );
       scene.add( app.drawMesh );
       app.baseMesh.rotation.x = Math.PI / 8;
+      app.baseMeshLowRes.rotation.x = Math.PI / 8;
       app.drawMesh.rotation.x = Math.PI / 8;
-      app.drawMesh.visible = false;
 
       // Draw mesh is slightly larger, so that it appears in front of base mesh
       app.drawMesh.scale = new THREE.Vector3( 1.01, 1.01, 1.01 );
@@ -24,14 +27,25 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
         app.drawMesh.visible = false;
         if ( app.light === 0) {
           app.baseMesh.material = material.tombstone;
+          app.baseMeshLowRes.material = material.tombstone;
         } else if ( app.light === 1) {
           app.baseMesh.material = material.tombstoneLight;
+          app.baseMeshLowRes.material = material.tombstoneLight;
         } else if ( app.light === 2) {
           app.baseMesh.material = material.tombstoneLight2;
+          app.baseMeshLowRes.material = material.tombstoneLight2;
         }
       } else {
         app.drawMesh.visible = true;
         app.baseMesh.material = material.stone1;
+        app.baseMeshLowRes.material = material.stone1;
+      }
+      if ( app.vertices ) {
+        app.baseMesh.visible = true;
+        app.baseMeshLowRes.visible = false;
+      } else {
+        app.baseMesh.visible = false;
+        app.baseMeshLowRes.visible = true;
       }
     },
     animate: function() {
@@ -39,6 +53,7 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
       controls.update();
       if ( app.spin ) {
         app.baseMesh.rotation.y += 0.006;
+        app.baseMeshLowRes.rotation.y += 0.006;
         app.drawMesh.rotation.y += 0.006;
       }
 

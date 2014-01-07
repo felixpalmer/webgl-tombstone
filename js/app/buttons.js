@@ -8,6 +8,10 @@ define( ["app", "scribbler"], function( app, scribbler ) {
       app.carve = !app.carve;
       app.reset();
     },
+    "Toggle vertices": function() {
+      app.vertices = !app.vertices;
+      app.reset();
+    },
     "Toggle light": function() {
       app.light = ( app.light + 1 ) % 3;
       app.reset();

@@ -56,7 +56,7 @@ define( ["drawing-container"], function( container ) {
     paint: function( x, y ) {
       scribbler.ctx.beginPath();
       scribbler.ctx.arc( x, y, 10, 0, 2 * Math.PI, false );
-      scribbler.ctx.fillStyle = "rgba(1, 255, 0, 0.5)";
+      scribbler.ctx.fillStyle = "rgba(1, 255, 0, 0.1)";
       scribbler.ctx.fill();
       scribbler.ctx.closePath();
       scribbler.updated = true;
