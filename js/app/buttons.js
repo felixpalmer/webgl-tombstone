@@ -18,7 +18,11 @@ define( ["app", "scribbler"], function( app, scribbler ) {
     },
     "Load depth image": function() {
       scribbler.clear();
-      scribbler.loadImage( "js/textures/depth.png" );
+      if ( Math.random() > 0.3 ) {
+        scribbler.loadImage( "js/textures/quarterBumpmap.png" );
+      } else {
+        scribbler.loadImage( "js/textures/depth.png" );
+      }
     },
     "Clear canvas": function() {
       scribbler.clear();
