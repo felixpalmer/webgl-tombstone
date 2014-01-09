@@ -8,13 +8,24 @@ define( ["app", "scribbler"], function( app, scribbler ) {
       app.carve = !app.carve;
       app.reset();
     },
+    "Toggle vertices": function() {
+      app.vertices = !app.vertices;
+      app.reset();
+    },
     "Toggle light": function() {
-      app.light = !app.light;
+      app.light = ( app.light + 1 ) % 3;
       app.reset();
     },
     "Load depth image": function() {
       scribbler.clear();
-      scribbler.loadImage( "js/textures/depth.png" );
+      var r = Math.random();
+      if ( r < 0.5 ) {
+        scribbler.loadImage( "js/textures/quarterBumpmap.png" );
+      } else if ( r < 0.8 ) {
+        scribbler.loadImage( "js/textures/noiseBumpmap.png" );
+      } else {
+        scribbler.loadImage( "js/textures/depth.png" );
+      }
     },
     "Clear canvas": function() {
       scribbler.clear();
