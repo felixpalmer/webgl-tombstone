@@ -18,8 +18,11 @@ define( ["app", "scribbler"], function( app, scribbler ) {
     },
     "Load depth image": function() {
       scribbler.clear();
-      if ( Math.random() > 0.3 ) {
+      var r = Math.random();
+      if ( r < 0.5 ) {
         scribbler.loadImage( "js/textures/quarterBumpmap.png" );
+      } else if ( r < 0.8 ) {
+        scribbler.loadImage( "js/textures/noiseBumpmap.png" );
       } else {
         scribbler.loadImage( "js/textures/depth.png" );
       }

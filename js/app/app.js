@@ -52,9 +52,10 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
       window.requestAnimationFrame( app.animate );
       controls.update();
       if ( app.spin ) {
-        app.baseMesh.rotation.y += 0.006;
-        app.baseMeshLowRes.rotation.y += 0.006;
-        app.drawMesh.rotation.y += 0.006;
+        var rotation = 1.5 * Math.sin( 0.5 * app.clock.getElapsedTime() );
+        app.baseMesh.rotation.y = rotation;
+        app.baseMeshLowRes.rotation.y = rotation;
+        app.drawMesh.rotation.y = rotation;
       }
 
       // Update texture based on what is on drawing canvas
