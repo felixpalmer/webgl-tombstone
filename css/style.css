@@ -21,6 +21,15 @@ h1 {
   font-family: "Hamburger", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: black 5px 5px;
   font-size: 70px;
+  margin-bottom: 0;
+}
+
+h4 a:link, a:visited {
+  font-family: "Hamburger", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  text-shadow: #111 5px 5px;
+  color: #0094DE;
+  margin: 0;
 }
 
 p {

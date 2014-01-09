@@ -52,7 +52,7 @@ function( THREE, camera, controls, geometry, light, material, renderer, scene, s
       window.requestAnimationFrame( app.animate );
       controls.update();
       if ( app.spin ) {
-        var rotation = 1.5 * Math.sin( 0.5 * app.clock.getElapsedTime() );
+        var rotation = 1.3 * Math.sin( 0.5 * app.clock.getElapsedTime() );
         app.baseMesh.rotation.y = rotation;
         app.baseMeshLowRes.rotation.y = rotation;
         app.drawMesh.rotation.y = rotation;
