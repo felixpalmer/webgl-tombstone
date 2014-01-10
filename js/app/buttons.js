@@ -1,6 +1,17 @@
 define( ["app", "scribbler"], function( app, scribbler ) {
   var container = document.getElementById( 'buttons-container' );
   var buttons = {
+    "Load depth image": function() {
+      scribbler.clear();
+      var r = Math.random();
+      if ( r < 0.5 ) {
+        scribbler.loadImage( "js/textures/quarterBumpmap.png" );
+      } else if ( r < 0.8 ) {
+        scribbler.loadImage( "js/textures/noiseBumpmap.png" );
+      } else {
+        scribbler.loadImage( "js/textures/depth.png" );
+      }
+    },
     "Toggle auto-rotate": function() {
       app.spin = !app.spin;
     },
@@ -15,17 +26,6 @@ define( ["app", "scribbler"], function( app, scribbler ) {
     "Toggle light": function() {
       app.light = ( app.light + 1 ) % 3;
       app.reset();
-    },
-    "Load depth image": function() {
-      scribbler.clear();
-      var r = Math.random();
-      if ( r < 0.5 ) {
-        scribbler.loadImage( "js/textures/quarterBumpmap.png" );
-      } else if ( r < 0.8 ) {
-        scribbler.loadImage( "js/textures/noiseBumpmap.png" );
-      } else {
-        scribbler.loadImage( "js/textures/depth.png" );
-      }
     },
     "Clear canvas": function() {
       scribbler.clear();
